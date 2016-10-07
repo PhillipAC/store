@@ -1,0 +1,14 @@
+<footer class="footer">
+  <small>
+    You deserve to be pampered. 
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "Facebook",   'https://www.facebook.com/MamaSuesHomeMadeBathProducts' %></li>
+      <li><%= link_to "Twitter", '#' %></li>
+      <% unless current_user %>
+        <li><%= link_to "Employee", "/auth/google_oauth2", id: "sign_in" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</footer>

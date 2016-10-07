@@ -1,0 +1,54 @@
+<div class="window">
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :picture %><br>
+      <%= f.file_field :picture, class: "center" %>
+    <% if f.object.picture? %>
+      <%= image_tag f.object.picture.url, size: "200" %><br>
+      <%= f.label :remove_picture %>
+      <%= f.check_box :remove_picture %> 
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :fragrances %><br>
+    <%= f.collection_select :fragrance_ids, Fragrance.all, :id, :name, 
+      {:selected => @item.fragrance_ids, :include_blank => true}, 
+      {:multiple => true} %>
+  </div>
+  <%= f.label :sizes %><br>
+  <div class="field">
+    <%= f.fields_for :sizes do |builder| %>
+      <%= render 'size_fields', f: builder %>
+    <% end %>
+    <br>
+  </div>
+  <%= link_to_add_fields "Add Size", f, :sizes %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div><br>

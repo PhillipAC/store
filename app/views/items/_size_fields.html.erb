@@ -1,0 +1,11 @@
+<fieldset class="window">
+  <%= f.label :name, "Name" %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :volume, "Ounces" %><br>
+  <%= f.number_field :volume %><br>
+  <%= f.label :price, "Price" %><br>
+  <%= f.number_field :price %><br>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", "", class: "remove_fields" %>
+</fieldset>
+<br>

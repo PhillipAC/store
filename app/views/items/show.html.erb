@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h1><%= @item.name %></h1>
+</div>
+<div class="show_case">
+  <div class="row">
+    <div class="col-md-6">
+      <h2><%= @item.name %> / 
+        <%= link_to @item.category.name, @item.category %></h2>
+      <p>
+        <%= @item.description %>
+      </p>
+      <p>
+        Size Options
+        <ul>
+          <% @item.sizes.each do |f| %>
+            <li><%=f.name%> | Price: <%=f.price%> | Ounces: <%=f.volume%></li>
+          <% end %>
+        </ul>
+      </p>
+      <p>
+        Fragrance Options
+        <ul>
+          <% @item.fragrances.each do |f|%>
+            <li><%=f.name%></li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+    <div class="col-md-6 center">
+      <%= image_tag @item.picture.url, size: "400" %>
+    </div>
+  </div>
+</div>
+<br>
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

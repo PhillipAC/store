@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="padded">Products</h1>
+
+<% @items.in_groups_of(3).each do |group| %>
+  <div class="row">
+      <% group.each do |item| %>
+        <% if item %>
+          <div class="col-sm-4 center padded">
+            <%= link_to image_tag(item.picture, size: ("200")), item %><br>
+            <%= link_to item.name, item, class: "center h2"%>
+            <br>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'New Item', new_item_path %>
